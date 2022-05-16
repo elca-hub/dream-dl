@@ -8,8 +8,13 @@
   opacity: 0.5;
 }
 
-.main h3 {
+.main h4 {
   color: #444;
+}
+
+.title-box {
+  backdrop-filter: contrast(0.5);
+  border-radius: 5px;
 }
 
 .bg-img img {
