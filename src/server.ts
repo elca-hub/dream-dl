@@ -10,7 +10,6 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 8080;
 
 app.use('/', router);
-
 app.use('/downloads', express.static('downloads'));
 
 app.listen(PORT, () => {
