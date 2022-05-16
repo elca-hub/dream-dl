@@ -30,10 +30,18 @@ const initId = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-router.use(initId);
+let origin: string;
+
+const setOrigin = (req: Request, res: Response, next: NextFunction) => {
+  origin = `${req.protocol}://${req.headers.host}`;
+  next();
+};
+
+router.use('/', initId);
+router.use('/', setOrigin);
 
 router.get('/', (req: Request, res: Response) => {
-  res.render('pages/index');
+  res.render('pages/index', {origin});
 });
 
 router.get('/preview', async (req: Request, res: Response) => {
@@ -49,11 +57,11 @@ router.get('/preview', async (req: Request, res: Response) => {
       ytid as string,
     );
     songApplication.saveId(songData.Id);
-    res.render('pages/preview', {songData});
+    res.render('pages/preview', {songData, origin});
   } catch (e) {
     const err = e as Error;
     console.log(err);
-    res.render('pages/error', {err});
+    res.render('pages/error', {err, origin});
   }
 });
 

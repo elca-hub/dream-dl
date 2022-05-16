@@ -2,6 +2,7 @@
 <html>
   <head>
     <%- include('../components/head') %>
+    <link rel="stylesheet" href="<%= origin %>/css/index.css">
   </head>
   <body>
     <header class="text-center">
@@ -12,16 +13,16 @@
         Youtubeの動画を無料でダウンロードできるツール
       </h2>
     </header>
-    <main>
-      <form action="/preview" method="get">
-        <div class="form-group">
+    <main class="main">
+      <form action="/preview" method="get" class="link-form text-center">
+        <div class="form-group mb-3">
           <label for="url">
             YoutubeのURL
           </label>
           <input type="text" class="form-control" id="url" name="url" placeholder="https://www.youtube.com/watch?v=...">
         </div>
-        <button type="submit" class="btn btn-primary">
-          Preview
+        <button type="submit" class="btn btn-outline-primary">
+          Preview<span class="ms-2"><%- include('../icons/arrow-right-circle') %></span>
         </button>
       </form>
     </main>

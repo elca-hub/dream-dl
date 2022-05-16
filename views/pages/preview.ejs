@@ -2,6 +2,7 @@
 <html>
   <head>
     <%- include('../components/head') %>
+    <link rel="stylesheet" href="<%= origin %>/css/preview.css">
   </head>
   <body>
     <header class="text-center">
@@ -9,15 +10,20 @@
         Preview
       </h1>
     </header>
-    <main>
+    <main class="main">
       <h3><%= songData.Title %></h3>
       <h4><%= songData.Artist %></h4>
-      <img src="<%= songData.imgUrl %>" alt="<%= songData.Title %>">
-      <form action="/download" method="post">
+      <form action="/download" method="post" class="mb-3">
         <button type="submit" class="btn btn-primary">
           Download
         </button>
       </form>
+      <a href="/" class="btn btn-outline-primary">
+        Back
+      </a>
     </main>
+    <div class="bg-img">
+      <img src="<%= songData.imgUrl %>">
+    </div>
   </body>
 </html>
