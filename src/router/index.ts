@@ -21,8 +21,10 @@ router.get('/dl', async (req: Request, res: Response) => {
     res.status(400).send('youtubeのidが指定されていません');
     return;
   }
-  console.log(await songApplication.getSongInfo(ytid as string));
-  res.send('OK');
+  const songData = await songApplication.getSongInfo(ytid as string);
+  console.log(songData);
+  await songApplication.downloadSong(ytid as string);
+  res.send('pages/dl');
 });
 
 export default router;

@@ -30,4 +30,14 @@ export default class SongApplication {
     );
     return songInfoData;
   }
+
+  /**
+   * 曲をダウンロードする
+   * @param {string} id youtubeのid
+   * @return {Promise<string>} ダウンロードしたファイルのパス
+   */
+  public async downloadSong(id: string): Promise<string> {
+    const songPath = await this.songRepository.downloadSong(id);
+    return songPath;
+  }
 }
