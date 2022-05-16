@@ -14,7 +14,7 @@
       </h2>
     </header>
     <main class="main">
-      <form action="/preview" method="get" class="link-form text-center">
+      <form action="/preview" method="get" class="link-form text-center mb-4">
         <div class="form-group mb-3">
           <label for="url">
             YoutubeのURL
@@ -25,6 +25,16 @@
           Preview<span class="ms-2"><%- include('../icons/arrow-right-circle') %></span>
         </button>
       </form>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <a href="#"><p>Github<span class="ms-2"><%- include('../icons/github') %></span></p></a>
+          </div>
+          <div class="col-6">
+            <a href="#"><p>使用に関して<span class="ms-2"><%- include('../icons/warning') %></span></p></a>
+          </div>
+        </div>
+      </div>
     </main>
     <div class="cute-ball"></div>
   </body>
