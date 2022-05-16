@@ -1,6 +1,8 @@
 import {ISongRepository} from './repository/ISongRepository';
 import SongInfoData from './dto/songInfoData';
 
+import {attachMp3Tag} from '../infrastucture/mp3tag';
+
 /**
  * 曲情報のアプリケーションクラス
  */
@@ -38,6 +40,8 @@ export default class SongApplication {
    */
   public async downloadSong(id: string): Promise<string> {
     const songPath = await this.songRepository.downloadSong(id);
+    const sd = await this.getSongInfo(id);
+    attachMp3Tag(songPath, sd);
     return songPath;
   }
 

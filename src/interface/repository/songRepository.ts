@@ -21,7 +21,7 @@ export default class SongRepository implements ISongRepository {
     const songInfo: ISongInfoObj = {
       title: data.videoDetails.title,
       artist: data.videoDetails.author.name,
-      imgUrl: thumbnails[thumbnails.length - 1].url,
+      imgUrl: thumbnails[thumbnails.length - 2].url,
     };
     return songInfo;
   }
