@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../components/head') %>
+  </head>
+  <body>
+    <header class="text-center">
+      <h1>
+        Preview
+      </h1>
+    </header>
+    <main>
+      <h3><%= songData.Title %></h3>
+      <h4><%= songData.Artist %></h4>
+      <img src="<%= songData.imgUrl %>" alt="<%= songData.Title %>">
+      <form action="/download" method="post">
+        <button type="submit" class="btn btn-primary">
+          Download
+        </button>
+      </form>
+    </main>
+  </body>
+</html>

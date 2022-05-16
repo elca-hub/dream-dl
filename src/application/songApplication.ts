@@ -40,4 +40,20 @@ export default class SongApplication {
     const songPath = await this.songRepository.downloadSong(id);
     return songPath;
   }
+
+  /**
+   * idを保存する
+   * @param {string} id youtubeのid
+   */
+  public saveId(id: string) {
+    this.songRepository.Id = id;
+  }
+
+  /**
+   * idを取得する
+   * @return {string} id
+   */
+  public getID(): string {
+    return this.songRepository.Id;
+  }
 }

@@ -12,5 +12,18 @@
         Youtubeの動画を無料でダウンロードできるツール
       </h2>
     </header>
+    <main>
+      <form action="/preview" method="get">
+        <div class="form-group">
+          <label for="url">
+            YoutubeのURL
+          </label>
+          <input type="text" class="form-control" id="url" name="url" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Preview
+        </button>
+      </form>
+    </main>
   </body>
 </html>

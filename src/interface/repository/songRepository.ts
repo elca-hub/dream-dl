@@ -9,6 +9,7 @@ import path from 'path';
  * 曲情報のリポジトリクラス
  */
 export default class SongRepository implements ISongRepository {
+  private id!: string;
   /**
    * 曲情報を戻す
    * @param {string} id youtubeのid
@@ -35,7 +36,7 @@ export default class SongRepository implements ISongRepository {
   async downloadSong(id: string): Promise<any> {
     const fileName = `${id}.mp3`;
     const filePath = path.join(__dirname, '../../../downloads', fileName);
-    const fileUrl = 'localhost:8080/downloads/';
+    // const fileUrl = 'localhost:8080/downloads/';
     const stream = ytdl(`https://www.youtube.com/watch?v=${id}`, {
       filter: 'audioonly',
       quality: 'highestaudio',
@@ -49,9 +50,28 @@ export default class SongRepository implements ISongRepository {
             reject(err);
           })
           .on('end', () => {
-            resolve(fileUrl);
+            resolve(filePath);
           })
           .save(filePath);
     });
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @memberof SongRepository
+   */
+  set Id(id: string) {
+    this.id = id;
+  }
+
+  /**
+   *
+   * @readonly
+   * @type {string}
+   * @memberof SongRepository
+   */
+  get Id(): string {
+    return this.id === undefined ? '' : this.id;
   }
 }
