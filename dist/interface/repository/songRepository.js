@@ -51,7 +51,6 @@ class SongRepository {
     return __async(this, null, function* () {
       const data = yield import_ytdl_core.default.getInfo(id);
       const thumbnails = data.videoDetails.thumbnails;
-      console.log(thumbnails);
       if (!isNaN(data.videoDetails.lengthSeconds)) {
         const length = Number(data.videoDetails.lengthSeconds);
         if (length > 60 * 10)
