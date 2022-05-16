@@ -44,11 +44,17 @@ router.get('/preview', async (req: Request, res: Response) => {
   }
   // urlからyoutubeのidを取得する
   const ytid = url.split('v=')[1];
-  const songData: SongInfoData = await songApplication.getSongInfo(
-    ytid as string,
-  );
-  songApplication.saveId(songData.Id);
-  res.render('pages/preview', {songData});
+  try {
+    const songData: SongInfoData = await songApplication.getSongInfo(
+      ytid as string,
+    );
+    songApplication.saveId(songData.Id);
+    res.render('pages/preview', {songData});
+  } catch (e) {
+    const err = e as Error;
+    console.log(err);
+    res.render('pages/error', {err});
+  }
 });
 
 router.post('/download', async (req: Request, res: Response) => {

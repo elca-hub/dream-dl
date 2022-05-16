@@ -18,6 +18,10 @@ export default class SongRepository implements ISongRepository {
   async getSongInfo(id: string): Promise<ISongInfoObj> {
     const data = await ytdl.getInfo(id); // youtubeのデータを取得
     const thumbnails = data.videoDetails.thumbnails; // サムネイル情報
+    if (!isNaN(data.videoDetails.lengthSeconds as unknown as number)) {
+      const length = Number(data.videoDetails.lengthSeconds); // 曲の長さ
+      if (length > 60 * 10) throw new Error('song length is over 10 minutes');
+    }
     const songInfo: ISongInfoObj = {
       title: data.videoDetails.title,
       artist: data.videoDetails.author.name,
