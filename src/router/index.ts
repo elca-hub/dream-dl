@@ -21,7 +21,6 @@ const initId = (req: Request, res: Response, next: NextFunction) => {
   if (id) {
     const fileName = `${id}.mp3`;
     const filePath = path.join(__dirname, '../../downloads', fileName);
-    console.log(filePath);
     if (fs.existsSync(filePath)) {
       // ファイルを削除
       fs.unlinkSync(filePath);
