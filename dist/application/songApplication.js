@@ -56,9 +56,9 @@ class SongApplication {
       return songInfoData;
     });
   }
-  downloadSong(id) {
+  downloadSong(id, volume) {
     return __async(this, null, function* () {
-      const songPath = yield this.songRepository.downloadSong(id);
+      const songPath = yield this.songRepository.downloadSong(id, volume);
       const sd = yield this.getSongInfo(id);
       (0, import_mp3tag.attachMp3Tag)(songPath, sd);
       return songPath;

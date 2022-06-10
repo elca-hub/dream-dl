@@ -16,6 +16,8 @@
         <h4><%= songData.Artist %></h4>
       </div>
       <form action="/download" method="post" class="mb-3">
+        <label for="volumeRange" class="form-label">音量</label>
+        <input type="range" class="form-range" min="0" max="1" step="0.05" id="volumeRange" name="volume">
         <button type="submit" class="btn btn-primary">
           Download
         </button>

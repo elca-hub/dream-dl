@@ -36,10 +36,11 @@ export default class SongApplication {
   /**
    * 曲をダウンロードする
    * @param {string} id youtubeのid
+   * @param {number} volume 音量
    * @return {Promise<string>} ダウンロードしたファイルのパス
    */
-  public async downloadSong(id: string): Promise<string> {
-    const songPath = await this.songRepository.downloadSong(id);
+  public async downloadSong(id: string, volume: number): Promise<string> {
+    const songPath = await this.songRepository.downloadSong(id, volume);
     const sd = await this.getSongInfo(id);
     attachMp3Tag(songPath, sd);
     return songPath;

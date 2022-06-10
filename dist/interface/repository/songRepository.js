@@ -64,7 +64,7 @@ class SongRepository {
       return songInfo;
     });
   }
-  downloadSong(id) {
+  downloadSong(id, volume) {
     return __async(this, null, function* () {
       const fileName = `${id}.mp3`;
       const filePath = import_path.default.join(__dirname, "../../../downloads", fileName);
@@ -72,7 +72,7 @@ class SongRepository {
         filter: "audioonly",
         quality: "highestaudio"
       });
-      const proc = (0, import_fluent_ffmpeg.default)(stream);
+      const proc = (0, import_fluent_ffmpeg.default)(stream).audioFilters(`volume=${volume}`);
       return new Promise((resolve, reject) => {
         proc.on("error", (err) => {
           reject(err);

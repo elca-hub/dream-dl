@@ -18,6 +18,8 @@ var import_express = __toESM(require("express"));
 const app = (0, import_express.default)();
 app.set("view engine", "ejs");
 app.use(import_express.default.static("public"));
+app.use(import_express.default.urlencoded({ extended: true }));
+app.use(import_express.default.json());
 const PORT = process.env.PORT || 8080;
 app.use("/", import_router.default);
 app.use("/downloads", import_express.default.static("downloads"));

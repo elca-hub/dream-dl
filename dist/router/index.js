@@ -93,8 +93,14 @@ router.post("/download", (req, res) => __async(void 0, null, function* () {
   const id = songApplication.getID();
   if (id === "")
     return res.redirect("/");
+  const volumeRange = req.body.volume;
+  let volume = 1;
+  if (isNaN(volumeRange))
+    return res.redirect("/");
+  else
+    volume = Number(volumeRange);
   const sd = yield songApplication.getSongInfo(id);
-  const dlPath = yield songApplication.downloadSong(id);
+  const dlPath = yield songApplication.downloadSong(id, volume);
   return res.download(dlPath, `${sd.Title}.mp3`);
 }));
 var router_default = router;

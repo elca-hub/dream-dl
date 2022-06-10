@@ -27,16 +27,7 @@ var import_node_id3 = __toESM(require("node-id3"));
 function attachMp3Tag(filePath, songInfo) {
   import_node_id3.default.write({
     title: songInfo.Title,
-    artist: songInfo.Artist,
-    image: {
-      mime: "image/jpeg",
-      type: {
-        id: 3,
-        name: "front cover"
-      },
-      description: "",
-      imageBuffer: Buffer.from(songInfo.ImgUrl, "base64")
-    }
+    artist: songInfo.Artist
   }, filePath);
 }
 // Annotate the CommonJS export names for ESM import in node:
