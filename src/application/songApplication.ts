@@ -20,9 +20,9 @@ export default class SongApplication {
   /**
    * youtubeのidから曲情報を取得する
    * @param {string} id youtubeのid
-   * @return {Promise<any>} 曲情報
+   * @return {Promise<SongInfoData>} 曲情報
    */
-  public async getSongInfo(id: string): Promise<any> {
+  public async getSongInfo(id: string): Promise<SongInfoData> {
     const songInfo = await this.songRepository.getSongInfo(id);
     const songInfoData = new SongInfoData(
         id,
