@@ -99,9 +99,10 @@ router.post("/download", (req, res) => __async(void 0, null, function* () {
     return res.redirect("/");
   else
     volume = Number(volumeRange);
-  const sd = yield songApplication.getSongInfo(id);
-  const dlPath = yield songApplication.downloadSong(id, volume);
-  return res.download(dlPath, `${sd.Title}.mp3`);
+  const title = req.body.title === "" ? "NONE" : req.body.title;
+  const artist = req.body.artist === "" ? "\u540D\u7121\u3057\u306E\u6A29\u5175\u885B" : req.body.artist;
+  const dlPath = yield songApplication.downloadSong(id, volume, title, artist);
+  return res.download(dlPath, `${title}.mp3`);
 }));
 var router_default = router;
 // Annotate the CommonJS export names for ESM import in node:

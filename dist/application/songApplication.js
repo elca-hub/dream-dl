@@ -44,6 +44,7 @@ __export(songApplication_exports, {
 });
 module.exports = __toCommonJS(songApplication_exports);
 var import_songInfoData = __toESM(require("./dto/songInfoData"));
+var import_songModel = __toESM(require("../domain/model/songModel"));
 var import_mp3tag = require("../infrastucture/mp3tag");
 class SongApplication {
   constructor(songRepository) {
@@ -56,11 +57,11 @@ class SongApplication {
       return songInfoData;
     });
   }
-  downloadSong(id, volume) {
+  downloadSong(id, volume, title, artist) {
     return __async(this, null, function* () {
       const songPath = yield this.songRepository.downloadSong(id, volume);
-      const sd = yield this.getSongInfo(id);
-      (0, import_mp3tag.attachMp3Tag)(songPath, sd);
+      const songModel = new import_songModel.default(id, title, artist, "");
+      (0, import_mp3tag.attachMp3Tag)(songPath, songModel);
       return songPath;
     });
   }

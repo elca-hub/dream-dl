@@ -27,6 +27,18 @@ class SongModel {
     this.artist = artist;
     this.imgUrl = imgUrl;
   }
+  get Title() {
+    return this.title;
+  }
+  set Title(title) {
+    this.title = title;
+  }
+  get Artist() {
+    return this.artist;
+  }
+  set Artist(artist) {
+    this.artist = artist;
+  }
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {});
