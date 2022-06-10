@@ -10,14 +10,5 @@ export function attachMp3Tag(filePath: string, songInfo: SongInfoData): void {
   NodeID3.write({
     title: songInfo.Title,
     artist: songInfo.Artist,
-    image: {
-      mime: 'image/jpeg',
-      type: {
-        id: 3,
-        name: 'front cover',
-      },
-      description: '',
-      imageBuffer: Buffer.from(songInfo.ImgUrl, 'base64'),
-    },
   }, filePath);
 }
