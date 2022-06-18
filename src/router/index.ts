@@ -70,9 +70,22 @@ router.post('/download', async (req: Request, res: Response) => {
 
   if (id === '') return res.redirect('/');
 
-  const sd = await songApplication.getSongInfo(id);
-  const dlPath = await songApplication.downloadSong(id);
-  return res.download(dlPath, `${sd.Title}.mp3`);
+  const volumeRange = req.body.volume;
+  let volume = 1.0;
+
+  if (isNaN(volumeRange)) return res.redirect('/');
+  else volume = Number(volumeRange);
+
+  const title = req.body.title === '' ? 'NONE' : req.body.title;
+  const artist = req.body.artist === '' ? '名無しの権兵衛' : req.body.artist;
+
+  const dlPath = await songApplication.downloadSong(
+      id,
+      volume,
+      title,
+      artist,
+  );
+  return res.download(dlPath, `${title}.mp3`);
 });
 
 export default router;

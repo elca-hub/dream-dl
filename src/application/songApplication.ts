@@ -1,5 +1,6 @@
 import {ISongRepository} from './repository/ISongRepository';
 import SongInfoData from './dto/songInfoData';
+import SongModel from '../domain/model/songModel';
 
 import {attachMp3Tag} from '../infrastucture/mp3tag';
 
@@ -20,9 +21,9 @@ export default class SongApplication {
   /**
    * youtubeのidから曲情報を取得する
    * @param {string} id youtubeのid
-   * @return {Promise<any>} 曲情報
+   * @return {Promise<SongInfoData>} 曲情報
    */
-  public async getSongInfo(id: string): Promise<any> {
+  public async getSongInfo(id: string): Promise<SongInfoData> {
     const songInfo = await this.songRepository.getSongInfo(id);
     const songInfoData = new SongInfoData(
         id,
@@ -36,12 +37,20 @@ export default class SongApplication {
   /**
    * 曲をダウンロードする
    * @param {string} id youtubeのid
+   * @param {number} volume 音量
+   * @param {string} title タイトル
+   * @param {string} artist アーティスト名
    * @return {Promise<string>} ダウンロードしたファイルのパス
    */
-  public async downloadSong(id: string): Promise<string> {
-    const songPath = await this.songRepository.downloadSong(id);
-    const sd = await this.getSongInfo(id);
-    attachMp3Tag(songPath, sd);
+  public async downloadSong(
+      id: string,
+      volume: number,
+      title: string,
+      artist: string,
+  ): Promise<string> {
+    const songPath = await this.songRepository.downloadSong(id, volume);
+    const songModel = new SongModel(id, title, artist, '');
+    attachMp3Tag(songPath, songModel);
     return songPath;
   }
 

@@ -1,23 +1,14 @@
 import NodeID3 from 'node-id3';
-import SongInfoData from '../../application/dto/songInfoData';
+import SongModel from '../../domain/model/songModel';
 
 /**
  * mp3のタグ情報を設定する
  * @param {string} filePath ファイルのパス
- * @param {ISongInfoObj} songInfo 曲の情報
+ * @param {SongModel} songModel 曲の情報
  */
-export function attachMp3Tag(filePath: string, songInfo: SongInfoData): void {
+export function attachMp3Tag(filePath: string, songModel: SongModel): void {
   NodeID3.write({
-    title: songInfo.Title,
-    artist: songInfo.Artist,
-    image: {
-      mime: 'image/jpeg',
-      type: {
-        id: 3,
-        name: 'front cover',
-      },
-      description: '',
-      imageBuffer: Buffer.from(songInfo.ImgUrl, 'base64'),
-    },
+    title: songModel.Title,
+    artist: songModel.Artist,
   }, filePath);
 }

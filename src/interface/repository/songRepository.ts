@@ -34,10 +34,11 @@ export default class SongRepository implements ISongRepository {
    *
    *
    * @param {string} id
+   * @param {number} volume
    * @return {*}  {Promise<any>}
    * @memberof SongRepository
    */
-  async downloadSong(id: string): Promise<any> {
+  async downloadSong(id: string, volume: number): Promise<any> {
     const fileName = `${id}.mp3`;
     const filePath = path.join(__dirname, '../../../downloads', fileName);
     // const fileUrl = 'localhost:8080/downloads/';
@@ -46,7 +47,7 @@ export default class SongRepository implements ISongRepository {
       quality: 'highestaudio',
     });
 
-    const proc = ffmpeg(stream);
+    const proc = ffmpeg(stream).audioFilters(`volume=${volume}`);
 
     return new Promise((resolve, reject) => {
       proc

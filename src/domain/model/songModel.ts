@@ -20,4 +20,18 @@ export default class SongModel {
     this.artist = artist;
     this.imgUrl = imgUrl;
   }
+
+  get Title() {
+    return this.title;
+  }
+  set Title(title: string) {
+    this.title = title;
+  }
+
+  get Artist() {
+    return this.artist;
+  }
+  set Artist(artist: string) {
+    this.artist = artist;
+  }
 }
