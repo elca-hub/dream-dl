@@ -15,3 +15,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "dream-dl"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          justlogin: true
+      - run: git remote add heroku https://git.heroku.com/dream-dl.git
+      - run: git push heroku main
